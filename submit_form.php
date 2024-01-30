@@ -1,23 +1,30 @@
 <?php
-/*
-$servername = "localhost";
-$password = "password"; 
-$firstname = "firstname"; 
-$lastname = "lastname"; 
-$dbname = "attendance_db"
-*/
+
 //create a connection 
 $serverName = "localhost"; 
 $connectionInfo = array("DB"=>"attendance_db", 
-                        "PW"=>"password", 
-                        "FN"=>"firstname", 
-                        "LN"=> "lastname"); 
+                        "UID"=>"asyaakkus",
+                        "PWD"=>"higuys"); 
+
+//make $conn variable 
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-//check connection 
+
+//check connection validity 
 if ($conn) {
     echo "Connection Established";
 } else {
     echo "Connection Failed"; 
     die(print_r(sqlsrv_errors(), true));
 }
-?>
+
+//insert values into database 
+$password = $_POST['password']; 
+$firstname = $_POST['firstname']; 
+$lastname = $_POST['lastname'];
+
+$sql = "INSERT INTO attendance_data(password, firstname, lastname) VALUES (?, ?, ?)"; 
+$params = array($password, $firstname, $lastname); 
+$result = sqlsrv_query($conn, $sql, $params); 
+
+//close the connection 
+sqlsrv_close($conn);
