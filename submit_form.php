@@ -1,9 +1,9 @@
 <?php
 
 //create a connection 
-$serverName = "localhost"; 
-$connectionInfo = array("DB"=>"attendance_db", 
-                        "UID"=>"asyaakkus",
+$serverName = "127.0.0.1"; 
+$connectionInfo = array("Database"=>"attendance_db", 
+                        "UID"=>"asyaakkus", 
                         "PWD"=>"higuys"); 
 
 //make $conn variable 
